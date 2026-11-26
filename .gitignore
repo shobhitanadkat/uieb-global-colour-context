@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (downloaded by the notebook, not stored in the repo)
+data/
+uieb_clean/
+_extracted/
+*.zip
+
+# Model weights and run outputs
+*.pt
+*.pth
+*.ckpt
+midterm/
+reports/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
