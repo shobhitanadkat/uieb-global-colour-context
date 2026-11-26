@@ -17,7 +17,7 @@ Underwater images lose red light with depth and pick up a blue-green haze, and h
 
 Nine methods are compared under a single training protocol: two classical corrections, two ML baselines (Ridge, Random Forest), a pixel-wise ANN, a plain CNN, a U-Net, our **global-context U-Net (GC-U-Net)** and a hybrid **Vision Transformer**.
 
-📄 **Paper:** [`paper/Given_or_Learned_Global_Colour_Context_UIE.docx`](paper/) · 📘 **Report:** [`paper/UIEB_Project_Report.pdf`](paper/UIEB_Project_Report.pdf)
+📄 **Paper:** [`paper/Given_or_Learned_Global_Colour_Context_UIE.docx`](paper/Given_or_Learned_Global_Colour_Context_UIE.docx) · 📘 **Report:** [`paper/UIEB_Project_Report.pdf`](paper/UIEB_Project_Report.pdf) · 📓 **Notebook:** [`notebooks/UIEB_Underwater_Image_Enhancement.ipynb`](notebooks/UIEB_Underwater_Image_Enhancement.ipynb)
 
 ## Key results (T89 test set, 256×256)
 
@@ -60,11 +60,25 @@ uieb-global-colour-context/
 ├── requirements.txt
 ├── .gitignore
 ├── notebooks/
-│   └── UIEB_Underwater_Image_Enhancement.ipynb   ← full pipeline (Part 1 ETL + Part 2 models)
+│   └── UIEB_Underwater_Image_Enhancement.ipynb    ← full pipeline (Part 1 ETL + Part 2 models)
 ├── results/
-│   ├── midterm_summary.md                         ← auto-written results summary
-│   ├── tables/test_results_T89.csv
-│   └── figures/                                   ← EDA, tuning, training curves, test metrics, visual comparisons
+│   ├── midterm_summary.md                          ← auto-written results summary
+│   ├── tables/
+│   │   └── test_results_T89.csv                    ← final T89 test metrics
+│   └── figures/
+│       ├── eda/                                    ← Part 1: data cleaning & EDA
+│       │   ├── eda_flagged_duplicates.png
+│       │   ├── eda_colour_and_psnr_ssim_diagnostics.png
+│       │   ├── eda_clean_pairs_spot_check.png
+│       │   └── split_stats_colour_cast.png
+│       ├── 02_gc_unet_tuning.png                   ← Part 2: tuning
+│       ├── 03_regularization_curves.png            ← Part 2: training curves
+│       ├── 03b_cnn_val_curves.png
+│       ├── 03c_transformer_curves.png
+│       ├── 04_test_metrics.png                     ← Part 2: evaluation
+│       ├── 05_visual_comparison_test.png
+│       ├── 06_failure_cases.png
+│       └── 07_challenge_c60.png
 ├── paper/
 │   ├── Given_or_Learned_Global_Colour_Context_UIE.docx
 │   └── UIEB_Project_Report.pdf
@@ -74,7 +88,7 @@ uieb-global-colour-context/
 
 ## How to run
 
-1. Open the notebook on **Kaggle** and set **Accelerator → GPU T4 ×1** and **Internet → ON**.
+1. Open [`notebooks/UIEB_Underwater_Image_Enhancement.ipynb`](notebooks/UIEB_Underwater_Image_Enhancement.ipynb) on **Kaggle** and set **Accelerator → GPU T4 ×1** and **Internet → ON**.
 2. **Run All.**
    - **Part 1 (Steps 0–11):** download, integrity scan, deduplication, EDA, clean dataset, splits. Takes about 2–3 minutes.
    - **Part 2 (Steps M0–M12):** baselines, ANN, CNNs, Transformer, tuning, ablations, evaluation. Set `RUN_MODE = 'full'` for the report numbers (≈ 2 h on a T4) or `'sample'` for a quick run.
